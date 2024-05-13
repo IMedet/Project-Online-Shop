@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="/layout/generalLayout.html" >
+
+<body class="container">
+<div class="row">
+  <div class="col">
+    <div class="container" layout:fragment="indexFragment">
+
+      <div class="container mt-3 col-md-12">
+        <div class="form-control mt-3 " >
+          <form class="col-md-12" method="post" th:action="@{'/saveName'}">
+            <div class="mt-3">
+              <label>Ваше новое имя пользователя</label>
+              <input type="text" name="newName" placeholder="Введите свое имя" required>
+            </div>
+            <div class="mt-3">
+              <button class="btn btn-primary">Изменить имя</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="/layout/generalLayout.html">
+
+<body class="container">
+<div class="row">
+    <div class="col">
+        <div class="container" layout:fragment="indexFragment">
+            <div class="col-md-10 mx-auto">
+
+                <div class="row">
+                    <div class="col ">
+                        <h5>Добавить товар</h5>
+                        <form class="form-control mt-3" method="post" th:action="@{'/addProduct'}">
+                                <div class="row mb-3" style="padding: 10px">
+                                    <label>Название</label>
+                                    <input type="text" name="productName">
+                                </div>
+                                <div class="row mb-3" style="padding: 10px">
+                                    <label>О продукте</label>
+                                    <input type="text" name="description">
+                                </div>
+                                <div class="row mb-3" style="padding: 10px">
+                                    <label>Цена</label>
+                                    <input type="number" name="price">
+                                </div>
+                                <div class="row mb-3" style="padding: 10px">
+                                    <label>Ссылка на картинку</label>
+                                    <input type="text" name="imageUrl">
+                                </div>
+                                <div class="row mb-3" style="padding: 10px">
+                                    <label>Категория</label>
+                                    <ul>
+                                        <li th:each="category : ${categories}">
+                                            <label>
+                                                <input type="radio" name="categoryId" th:value="${category.getId()}">
+                                                <span th:text="${category.getName()}"></span>
+                                            </label>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="row mb-3" style="padding: 10px">
+                                    <label>Количество</label>
+                                    <input type="number" name="amount" >
+                                </div>
+                            <div class="row mb-3">
+                                <button class="btn btn-primary">Добавить</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="container center-cards">
+                    <div class="row">
+                        <div class="col" th:each="product : ${products}" style="flex: 0 0 calc(33.33% - 20px); margin: 10px;">
+                            <div class="card d-block img-fluid mx-auto" style="width: 230px; height: 320px;">
+                                <img class="d-block img-fluid mx-auto" style="width: 150px; height: 150px;" th:src="${product.getImageUrl()}" alt="Card image cap" >
+                                <div class="card-body">
+                                    <h5 class="card-title" th:text="${product.getName()}" style="text-align: center;">Category Title</h5>
+                                    <a th:href="@{'/productDetails/' + ${product.getId()}}"  class="btn btn-primary" style="display: block; margin: 0 auto;">Details</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

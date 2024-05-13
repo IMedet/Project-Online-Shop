@@ -1,0 +1,5 @@
+<ul>
+    <li class="form-label mt-3" th:each="category: ${categoriesList}">
+        <a class="text-decoration-none" th:text="${category.getName()}" th:href="@{'/categoryDetails/' + ${category.getId()}}"></a>
+    </li>
+</ul>

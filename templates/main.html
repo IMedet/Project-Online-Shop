@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="/layout/mainLayout.html">
+<head>
+    <style>
+        .card {
+            position: relative;
+            width: 14rem;
+            height: 28rem; /* Высота карточки */
+            margin: 10px;
+            border: 1px solid #e5e5e5;
+            background: #fff;
+            padding: 21px 14px 0;
+            box-sizing: border-box;
+        }
+
+        .card .card-img-top {
+            width: 100%; /* Ширина изображения внутри карточки */
+            height: 200px; /* Высота изображения внутри карточки */
+            object-fit: cover; /* Растягиваем изображение, чтобы оно полностью заполнило контейнер */
+        }
+
+
+        .card .card-body {
+            text-align: center;
+        }
+    </style>
+</head>
+
+
+
+
+<body class="container">
+<div class="row">
+    <div class="col">
+        <div class="container" layout:fragment="mainFragment">
+
+            <div class="col-md-12 mb-3">
+                <div class="container mt-2">
+                    <div class="container center-cards">
+                        <div class="row">
+                            <div class="col mb-2 mx-auto text-center" th:each="product : ${highestProduct}">
+                                <div class="card d-block img-fluid mx-auto" style="width: 250px; height: 320px;">
+                                    <img class="d-block img-fluid mx-auto" style="width: 150px; height: 150px; margin: auto;" th:src="${product.getImageUrl()}" alt="Card image cap">
+                                    <div class="card-body">
+                                        <h5 class="card-title" th:text="${product.getName()}">Product Title</h5>
+                                        <h5 class="card-title" th:text="${product.getPrice()}">Product Price</h5>
+                                        <a th:href="@{'/productDetails/' + ${product.getId()}}" class="btn btn-primary">Details</a>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+</body>
+</html>

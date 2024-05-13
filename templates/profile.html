@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="/layout/generalLayout.html" >
+
+<body class="container">
+<div class="row">
+    <div class="col">
+        <div class="container" layout:fragment="indexFragment">
+
+            <div class="container text-center mx-auto">
+                <div class="row mx-auto col-md-12">
+                    <div class="form-control mb-4">
+                        <h2>Добро Пожаловать</h2>
+                        <h2 th:text="${#authentication.principal.fullName}"></h2>
+                        <a class="btn btn-primary " th:href="@{'/change-name'}">Изменить имя</a>
+                    </div>
+                </div>
+            </div>
+            <div class="container ">
+                <div class="row mx-auto text-center col-md-12">
+                    <label><strong>Мои Заказы</strong></label>
+                </div>
+
+                <div >
+                    <div class="card-body form-control" th:each="order : ${orders}">
+                        <div class="row">
+                            <div class="col-9 text-center">
+                                <span>Название товара</span><h5 th:text="${order.getProduct().getName()}"></h5>
+                                <span>Количество</span><h5 th:text="${order.getQuantity()}"></h5>
+                                <span>Статус</span><h5 th:text="${order.getStatus()}"></h5>
+                            </div>
+                            <div class="col-3 mt-3" >
+                                <a class="btn btn-primary" th:href="@{'/productDetails/' + ${order.getProduct().getId()}}" >О товаре</a>
+                                <div class="mt-3">
+                                    <form method="post" th:action="@{'/deleteOrder/' + ${order.getId()}}">
+                                        <button class="btn btn-danger">Удалить заказ</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

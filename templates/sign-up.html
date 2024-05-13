@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="/layout/generalLayout.html">
+
+<body class="container">
+<div class="row">
+    <div class="col">
+        <div class="container" layout:fragment="indexFragment">
+            <div class="col-md-10 mx-auto">
+                <div class="form-control container">
+                    <h2 class="mb-4 text-center">Зарегистрироваться</h2>
+                    <form method="post" th:action="@{'/registration'}">
+                        <div class="form-floating mb-4">
+                            <input type="email" class="form-control" id="user_email" name="user_email" placeholder="user-email" required>
+                            <label for="user_email">Почта</label>
+                        </div>
+                        <div class="form-floating mb-4">
+                            <input type="password" class="form-control" id="user_password" name="user_password" placeholder="user_password" required>
+                            <label for="user_password">Пароль</label>
+                        </div>
+                        <div class="form-floating mb-4">
+                            <input type="password" class="form-control" id="user_repeat_password" name="user_repeat_password" placeholder="user_repeat_password" required>
+                            <label for="user_repeat_password">Повторите пароль</label>
+                        </div>
+                        <div class="form-floating mb-4">
+                            <input type="text" class="form-control" id="user_full_name" name="user_full_name" placeholder="user_full_name" required>
+                            <label for="user_full_name">Полное имя</label>
+                        </div>
+                        <div class="alert alert-success mb-4" role="alert" th:if="${param.success != null}">
+                            Пользователь успешно зарегистрировался!
+                        </div>
+                        <div class="alert alert-danger mb-4" role="alert" th:if="${param.passwordError != null}">
+                            Пароль не совпадает!
+                        </div>
+                        <div class="alert alert-danger mb-4" role="alert" th:if="${param.emailError != null}">
+                            Почта занята!
+                        </div>
+                        <div class="d-grid gap-2 col-4 mx-auto">
+                            <button type="submit" class="btn btn-primary">Зарегистрироваться</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
